@@ -1,13 +1,11 @@
-scene.onHitWall(SpriteKind.Player, function (sprite, location) {
-	
-})
 function slideDown () {
     hero.ay = 0
     hero.vy = 15
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    // Stop double jump, only allow jump when you are in the air!
     if (hero.isHittingTile(CollisionDirection.Right) || hero.isHittingTile(CollisionDirection.Left) || hero.isHittingTile(CollisionDirection.Bottom)) {
-        hero.vy = -300
+        hero.vy = -200
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -131,10 +129,11 @@ tiles.placeOnTile(hero, tiles.getTileLocation(5, 30))
 scene.cameraFollowSprite(hero)
 hero.ay = 350
 game.onUpdateInterval(100, function () {
-    if (hero.isHittingTile(CollisionDirection.Right)) {
+    // hero.vy checks to make sure you only slide when you are falling
+    if (hero.isHittingTile(CollisionDirection.Right) && hero.vy > 0) {
         hero.setImage(rightSwordOutImg)
         slideDown()
-    } else if (hero.isHittingTile(CollisionDirection.Left)) {
+    } else if (hero.isHittingTile(CollisionDirection.Left) && hero.vy > 0) {
         hero.setImage(leftSwordOutImg)
         slideDown()
     } else {
