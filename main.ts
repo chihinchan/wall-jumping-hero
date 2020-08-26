@@ -1,7 +1,15 @@
+scene.onHitWall(SpriteKind.Player, function (sprite, location) {
+    if (hero.isHittingTile(CollisionDirection.Bottom) && hero.vy > 200) {
+        info.changeLifeBy(-1)
+    }
+})
 function slideDown () {
     hero.ay = 0
     hero.vy = 15
 }
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sprite, location) {
+    game.over(true)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     // Stop double jump, only allow jump when you are in the air!
     if (hero.isHittingTile(CollisionDirection.Right) || hero.isHittingTile(CollisionDirection.Left) || hero.isHittingTile(CollisionDirection.Bottom)) {
@@ -128,6 +136,7 @@ tiles.setTilemap(tiles.createTilemap(hex`0a0020000303030303030303030303030303030
 tiles.placeOnTile(hero, tiles.getTileLocation(5, 30))
 scene.cameraFollowSprite(hero)
 hero.ay = 350
+info.setLife(3)
 game.onUpdateInterval(100, function () {
     // hero.vy checks to make sure you only slide when you are falling
     if (hero.isHittingTile(CollisionDirection.Right) && hero.vy > 0) {
