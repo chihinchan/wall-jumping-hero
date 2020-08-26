@@ -23,7 +23,8 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     hero.setImage(rightFacingImg)
 })
 let hero: Sprite = null
-
+let leftFacingImg: Image = null
+let rightFacingImg: Image = null
 let rightSwordOutImg = img`
     . . . . . . . f f . . . . . . . 
     . . . . f f f f 2 f f . . . . . 
@@ -60,7 +61,7 @@ let leftSwordOutImg = img`
     . . c . . . f f f f f f f f . . 
     . . . . . . . f f . . f f f . . 
     `
-let rightFacingImg = img`
+rightFacingImg = img`
     . . . . . . . . . . . . . . . . 
     . . . . . f f f f f f . . . . . 
     . . . f f e e e e f 2 f . . . . 
@@ -78,7 +79,7 @@ let rightFacingImg = img`
     . . . f f f f f f f f f f . . . 
     . . . . f f . . . f f f . . . . 
     `
-let leftFacingImg = img`
+leftFacingImg = img`
     . . . . . . . . . . . . . . . . 
     . . . . . f f f f f f . . . . . 
     . . . . f 2 f e e e e f f . . . 
